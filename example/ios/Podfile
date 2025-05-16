@@ -17,7 +17,7 @@ end
 target 'ParakeySdkReactNativeExample' do
   config = use_native_modules!
 
-  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.8.1'
+  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.8.6'
 
   use_react_native!(
     :path => config[:reactNativePath],
