@@ -5,7 +5,7 @@ The Parakey SDK allows your users to access features of the Parakey ecosystem wi
 ## Installation
 
 ```sh
-npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.0.1
+npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.0
 ```
 
 ## Documentation
@@ -27,7 +27,7 @@ Instructions below specify additional steps for each platform
   # ...
   config = use_native_modules!
 
-  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.8.6'
+  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.19.1'
 
   use_react_native!(
   # ...
