@@ -5,7 +5,7 @@ The Parakey SDK allows your users to access features of the Parakey ecosystem wi
 ## Installation
 
 ```sh
-npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.0
+npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.1
 ```
 
 ## Documentation
