@@ -2,6 +2,11 @@
 
 The Parakey SDK allows your users to access features of the Parakey ecosystem within your application.
 
+## Requirements
+
+The SDK is verified to work with React Native `0.78.2` and later. Earlier versions may work, but they
+have not been tested.
+
 ## Installation
 
 ```sh
