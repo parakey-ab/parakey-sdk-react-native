@@ -10,7 +10,7 @@ have not been tested.
 ## Installation
 
 ```sh
-npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.1
+npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.2
 ```
 
 ## Documentation
