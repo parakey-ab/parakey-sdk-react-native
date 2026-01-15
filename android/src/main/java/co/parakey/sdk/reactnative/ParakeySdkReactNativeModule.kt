@@ -11,47 +11,47 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class ParakeySdkReactNativeModule(
-  private val context: ReactApplicationContext
+    private val context: ReactApplicationContext
 ) : ReactContextBaseJavaModule(context) {
-  private val scope = MainScope()
-  private val app: Application
-    get() = context.applicationContext as Application
+    private val scope = MainScope()
+    private val app: Application
+        get() = context.applicationContext as Application
 
-  override fun getName() = "ParakeyBridge"
+    override fun getName() = "ParakeyBridge"
 
-  @ReactMethod
-  fun initialize(promise: Promise) {
-    Parakey.initialize(app)
-    promise.resolve(null)
-  }
-
-  @ReactMethod
-  fun configure(tokenBundle: String, promise: Promise) {
-    scope.launch {
-      complete(promise, Parakey.configure(tokenBundle))
+    @ReactMethod
+    fun initialize(promise: Promise) {
+        Parakey.initialize(app)
+        promise.resolve(null)
     }
-  }
 
-  @ReactMethod
-  fun deconfigure(promise: Promise) {
-    scope.launch {
-      Parakey.deconfigure()
-      promise.resolve(null)
+    @ReactMethod
+    fun configure(tokenBundle: String, promise: Promise) {
+        scope.launch {
+            complete(promise, Parakey.configure(tokenBundle))
+        }
     }
-  }
 
-  @ReactMethod
-  fun showScan(promise: Promise) {
-    scope.launch {
-      complete(promise, Parakey.showScan())
+    @ReactMethod
+    fun deconfigure(promise: Promise) {
+        scope.launch {
+            Parakey.deconfigure()
+            promise.resolve(null)
+        }
     }
-  }
 
-  private fun complete(promise: Promise, result: ParakeyError?) {
-    if (result != null) {
-      promise.reject(code = result.toString(), message = null)
-    } else {
-      promise.resolve(null)
+    @ReactMethod
+    fun showScan(promise: Promise) {
+        scope.launch {
+            complete(promise, Parakey.showScan())
+        }
     }
-  }
+
+    private fun complete(promise: Promise, result: ParakeyError?) {
+        if (result != null) {
+            promise.reject(code = result.toString(), message = null)
+        } else {
+            promise.resolve(null)
+        }
+    }
 }
