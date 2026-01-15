@@ -1,5 +1,4 @@
-package com.parakeysdkreactnative
-
+package co.parakey.sdk.reactnative
 
 import android.app.Application
 import co.parakey.sdk.Parakey

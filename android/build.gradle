@@ -35,13 +35,7 @@ def supportsNamespace() {
 
 android {
   if (supportsNamespace()) {
-    namespace "com.parakeysdk"
-
-    sourceSets {
-      main {
-        manifest.srcFile "src/main/AndroidManifestNew.xml"
-      }
-    }
+    namespace "co.parakey.sdk.reactnative"
   }
 
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
