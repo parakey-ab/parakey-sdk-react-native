@@ -40,6 +40,8 @@
 	<string>Parakey uses Bluetooth in order to discover and interact with locks</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Certain locks require biometric authentication in order to unlock</string>
+	<key>RCTNewArchEnabled</key>
+	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
