@@ -1,4 +1,4 @@
-import { configure, initialize, showScan } from 'parakey-sdk-react-native';
+import { configure, showScan } from 'parakey-sdk-react-native';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 export default function App() {
@@ -14,7 +14,6 @@ async function pressedButton() {
   const tokenBundle = 'example token';
   console.log('Presenting SDK!');
 
-  await initialize();
   try {
     await configure(tokenBundle);
     await showScan();

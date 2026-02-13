@@ -20,12 +20,6 @@ class ParakeySdkReactNativeModule(
     override fun getName() = "ParakeyBridge"
 
     @ReactMethod
-    fun initialize(promise: Promise) {
-        Parakey.initialize(app)
-        promise.resolve(null)
-    }
-
-    @ReactMethod
     fun configure(tokenBundle: String, promise: Promise) {
         scope.launch {
             complete(promise, Parakey.configure(tokenBundle))

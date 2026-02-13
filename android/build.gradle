@@ -69,7 +69,9 @@ repositories {
 def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
+  def parakeyUseControlUnit = (getExtOrDefault("useControlUnit")?.toString()?.toBoolean()) ?: false
+
   implementation "com.facebook.react:react-android"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation("co.parakey:sdk:1.13.1")
+  implementation("co.parakey:${parakeyUseControlUnit ? 'sdk-control-unit' : 'sdk'}:1.17.2")
 }

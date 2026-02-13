@@ -9,7 +9,7 @@ Minimum requried React Native version: `0.80.3`
 ## Installation
 
 ```sh
-npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.2
+npm install https://github.com/parakey-ab/parakey-sdk-react-native#2.0.0
 ```
 
 ## Documentation
@@ -32,13 +32,13 @@ Instructions below specify additional steps for each platform
   # ...
   config = use_native_modules!
 
-  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.19.1'
+  pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '1.6.11'
 
   use_react_native!(
   # ...
   ```
 
-- Parakey relies on background jobs which have to register handlers during application launch. A call to `Parakey.shared.initalize()` must be present in your `AppDelegate`.
+- Parakey relies on background jobs which have to register handlers during application launch. A call to `Parakey.shared.initialize()` must be present in your `AppDelegate`.
 
   ```swift
   // AppDelegate.swift
@@ -69,12 +69,35 @@ Instructions below specify additional steps for each platform
      maven {
        url = uri( "https://maven.pkg.github.com/parakey-ab/parakey-sdk-android")
        credentials {
-         username = providers.environmentVariable("GITHUB_USER").get()
-         password = providers.environmentVariable("GITHUB_TOKEN").get()
+           username = System.getenv("GITHUB_USER")
+           password = System.getenv("GITHUB_TOKEN")
        }
      }
    }
  }
+```
+
+- Update your `app/build.gradle` with:
+
+```gradle
+dependencies {
+    implementation("co.parakey:sdk:1.17.2")
+    //...
+}
+```
+
+- Parakey must be initalized early in the application lifecycle via a call to `Parakey.initialize(this)` in the `onCreate` callback of the `Application`
+
+```kotlin
+class MainApplication : Application(), ReactApplication {
+    // ...
+
+    override fun onCreate() {
+        super.onCreate()
+        Parakey.initialize(this
+        loadReactNative(this)
+    }
+}
 ```
 
 ## Usage
@@ -84,7 +107,6 @@ import Parakey from 'parakey-sdk-react-native';
 
 function setup() {
   const tokenBundle = "...."; // acquired through partner API
-  await Parakey.initialize();
 
   try {
     await Parakey.configure(tokenBundle);

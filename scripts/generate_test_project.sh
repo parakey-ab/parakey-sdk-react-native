@@ -58,6 +58,10 @@ allprojects {
     mavenCentral()
     maven {
       url = uri( "https://maven.pkg.github.com/parakey-ab/parakey-sdk-android")
+      credentials {
+          username = System.getenv("GITHUB_USER")
+          password = System.getenv("GITHUB_TOKEN")
+      }
     }
   }
 }

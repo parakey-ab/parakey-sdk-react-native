@@ -7,7 +7,6 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n';
 
 interface ParakeyInterface {
-  initialize(): Promise<void>;
   configure(tokenBundle: string): Promise<void>;
   deconfigure(): Promise<void>;
   showScan(): Promise<void>;
@@ -25,4 +24,4 @@ const Parakey: ParakeyInterface = NativeModules.ParakeyBridge
     );
 
 export default Parakey;
-export const { initialize, configure, deconfigure, showScan } = Parakey;
+export const { configure, deconfigure, showScan } = Parakey;

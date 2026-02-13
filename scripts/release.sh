@@ -22,9 +22,11 @@ read_android_version
 read_ios_version
 
 replace_version 'README.md' 'npm install' $react_native_version
+replace_version 'README.md' 'co.parakey:sdk:' $android_version
 replace_version 'package.json' '^[[:space:]][[:space:]]"version":' $react_native_version
 
 replace_version 'android/build.gradle' 'sdk' $android_version
+replace_version 'example/android/app/build.gradle' 'sdk' $android_version
 
 replace_version 'README.md' 'ParakeySDK' $ios_version
 replace_version 'example/ios/podfile' 'ParakeySDK' $ios_version

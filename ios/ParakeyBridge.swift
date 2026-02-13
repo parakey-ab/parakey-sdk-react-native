@@ -2,13 +2,6 @@ import ParakeySDK
 
 @objc(ParakeyBridge)
 class ParakeyBridge: NSObject {
-  @objc(initialize:withRejecter:)
-  func initialize(resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
-    // no-op, initialization performed in AppDelegate
-    // present only for symmetry with Android
-    resolve(nil)
-  }
-
   @objc(configure:withResolver:withRejecter:)
   func configure(
     tokenBundle: String,

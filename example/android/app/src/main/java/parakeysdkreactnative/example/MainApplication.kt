@@ -1,6 +1,7 @@
 package parakeysdkreactnative.example
 
 import android.app.Application
+import co.parakey.sdk.Parakey
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
@@ -32,6 +33,7 @@ class MainApplication : Application(), ReactApplication {
 
     override fun onCreate() {
         super.onCreate()
+        Parakey.initialize(this)
         loadReactNative(this)
     }
 }
