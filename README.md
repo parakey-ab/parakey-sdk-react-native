@@ -15,8 +15,9 @@ npm install https://github.com/parakey-ab/parakey-sdk-react-native#1.1.2
 
 ## Documentation
 
-Detailed documentation can be found in repositories corresponding to respective native package
+Documentation can be found in the Parther API specficiation and repositories for respective native package
 
+- [Partner API](https://assets.parakey.co/api/partner/index.html)
 - [Android](https://github.com/parakey-ab/parakey-sdk-android)
 - [iOS](https://github.com/parakey-ab/parakey-sdk-ios)
 
@@ -83,11 +84,11 @@ Instructions below specify additional steps for each platform
 import Parakey from 'parakey-sdk-react-native';
 
 function setup() {
-  const token = "...."; // acquired through api integration
+  const tokenBundle = "...."; // acquired through partner API
   await Parakey.initialize();
 
   try {
-    await Parakey.configure(token);
+    await Parakey.configure(tokenBundle);
   } catch(error) {
     console.log(error.code);
   }
