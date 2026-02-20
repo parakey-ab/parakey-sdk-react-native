@@ -30,6 +30,11 @@ replace_version 'example/android/app/build.gradle' 'sdk' $android_version
 
 replace_version 'README.md' 'ParakeySDK' $ios_version
 replace_version 'example/ios/podfile' 'ParakeySDK' $ios_version
+
+replace_version 'scripts/generate_test_project.sh' 'parakey-sdk-react-native' $react_native_version
+replace_version 'scripts/generate_test_project.sh' 'parakey-sdk-ios' $ios_version
+replace_version 'scripts/generate_test_project.sh' 'co.parakey:sdk' $android_version
+
 echo_green "All files updated"
 
 echo -e ""

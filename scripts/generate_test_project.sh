@@ -14,12 +14,12 @@ echo_green "npx @react-native-community/cli@latest init ParakeyReactSample --ver
 prompt_enter_to_continue
 
 echo "Add React Native adapter to package.json 'dependencies', set version accordingly"
-echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#1.1.2",'
+echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#2.0.1",'
 prompt_enter_to_continue
 
 echo "Add to ios/Podfile, update version accordingly"
 echo_grey "config = use_native_modules!"
-echo_green "pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '0.19.1'"
+echo_green "pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '1.6.11'"
 echo_grey "use_react_native!("
 prompt_enter_to_continue
 
@@ -68,4 +68,13 @@ allprojects {
 EOF
 )"
 echo_green "$text"
+prompt_enter_to_continue
+
+echo "Add to dependencies in app/build.gradle"
+echo_green "implementation("co.parakey:sdk:1.17.3")"
+prompt_enter_to_continue
+
+echo "Add to MainApplication onCreate with corresponding import"
+echo_green import co.parakey.sdk.Parakey
+echo_green "Parakey.initialize(this)"
 prompt_enter_to_continue
