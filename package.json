@@ -1,6 +1,6 @@
 {
   "name": "parakey-sdk-react-native",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The Parakey SDK allows your application to unlock Parakey Devices",
   "source": "./src/index.tsx",
   "main": "./lib/module/index.js",

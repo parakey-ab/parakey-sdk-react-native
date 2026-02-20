@@ -9,7 +9,7 @@ Minimum required React Native version: `0.80.3`
 ## Installation
 
 ```sh
-npm install https://github.com/parakey-ab/parakey-sdk-react-native#2.0.0
+npm install https://github.com/parakey-ab/parakey-sdk-react-native#2.0.1
 ```
 
 ## Documentation
@@ -84,7 +84,7 @@ buildscript {
 
 ```diff
 dependencies {
-+   implementation("co.parakey:sdk:1.17.2")
++   implementation("co.parakey:sdk:1.17.3")
 }
 ```
 
