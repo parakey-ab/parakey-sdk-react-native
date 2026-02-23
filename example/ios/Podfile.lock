@@ -8,8 +8,8 @@ PODS:
   - hermes-engine (0.80.3):
     - hermes-engine/Pre-built (= 0.80.3)
   - hermes-engine/Pre-built (0.80.3)
-  - ParakeySDK (1.6.11)
-  - ParakeySdkReactNative (2.0.1):
+  - ParakeySDK (1.7.0)
+  - ParakeySdkReactNative (2.1.0):
     - boost
     - DoubleConversion
     - fast_float
@@ -2164,7 +2164,7 @@ DEPENDENCIES:
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - "ParakeySDK (from `git@github.com:parakey-ab/parakey-sdk-ios.git`, tag `1.6.11`)"
+  - "ParakeySDK (from `git@github.com:parakey-ab/parakey-sdk-ios.git`, tag `1.7.0`)"
   - ParakeySdkReactNative (from `../..`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -2256,7 +2256,7 @@ EXTERNAL SOURCES:
     :tag: hermes-2025-07-24-RNv0.80.2-5c7dbc0a78cb2d2a8bc81c41c617c3abecf209ff
   ParakeySDK:
     :git: "git@github.com:parakey-ab/parakey-sdk-ios.git"
-    :tag: 1.6.11
+    :tag: 1.7.0
   ParakeySdkReactNative:
     :path: "../.."
   RCT-Folly:
@@ -2393,7 +2393,7 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   ParakeySDK:
     :git: "git@github.com:parakey-ab/parakey-sdk-ios.git"
-    :tag: 1.6.11
+    :tag: 1.7.0
 
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
@@ -2403,8 +2403,8 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: fff23161928673afcd95f63146e651726f68b384
-  ParakeySDK: 99b118c21e9ae01b67203b12294a0eb89ae95aff
-  ParakeySdkReactNative: c5877d1e75b17fa23be314f3ef03ef5a8304d667
+  ParakeySDK: 1817b73522857673b47b7ae8fb3feff2f4d0e2eb
+  ParakeySdkReactNative: 9b72cb76addab3fdf67ba714a234e44275275a4a
   RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
   RCTDeprecation: 2ebc9cc0329ede460c5d52956ce5e1ab715c2c2c
   RCTRequired: b83daef658afafdc68d85b97ed082f4497a8ffa4
@@ -2472,6 +2472,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: fb21153542336c6e7c4855022f4a93a286865259
 
-PODFILE CHECKSUM: 583e150de0d8b40fb7dd7608624b2783bffa843f
+PODFILE CHECKSUM: 9a3381c68959d1b4cc52038f47bc9039974d1d60
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2

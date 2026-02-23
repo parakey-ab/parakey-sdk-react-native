@@ -73,5 +73,5 @@ dependencies {
 
   implementation "com.facebook.react:react-android"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation("co.parakey:${parakeyUseControlUnit ? 'sdk-control-unit' : 'sdk'}:1.17.3")
+  implementation("co.parakey:${parakeyUseControlUnit ? 'sdk-control-unit' : 'sdk'}:1.18.0")
 }
