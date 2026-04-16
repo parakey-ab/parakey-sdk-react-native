@@ -7,8 +7,12 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import androidx.core.graphics.toColorInt
+
+
 
 class ParakeySdkReactNativeModule(
     private val context: ReactApplicationContext
@@ -39,6 +43,31 @@ class ParakeySdkReactNativeModule(
         scope.launch {
             complete(promise, Parakey.showScan())
         }
+    }
+
+    @ReactMethod
+    fun setTheme(hexColors: ReadableMap, promise: Promise) {
+        try {
+            fun color(name: String) = hexColors.getString(name)?.normalizeColor()
+
+            Parakey.theme(
+                actionLight = color("actionLight"),
+                actionDark = color("actionDark"),
+                titleLight = color("titleLight"),
+                titleDark = color("titleDark"),
+            )
+
+            promise.resolve(null)
+        } catch (e: Exception) {
+            promise.reject("INVALID_THEME_COLOR", e.message)
+        }
+    }
+
+    // String.toColorInt() expects #AARRGGBB for 8-char hex, but JS/CSS uses #RRGGBBAA.
+    private fun String.normalizeColor(): Int {
+        val hex = trim().removePrefix("#")
+        val normalized = if (hex.length == 8) hex.takeLast(2) + hex.dropLast(2) else hex
+        return "#$normalized".toColorInt()
     }
 
     private fun complete(promise: Promise, result: ParakeyError?) {

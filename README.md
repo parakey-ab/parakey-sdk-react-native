@@ -128,6 +128,17 @@ function show() {
 function cleanUp() {
   await Parakey.deconfigure();
 }
+
+function theme() {
+  // Colors are hex strings: RRGGBB or RRGGBBAA (# prefix optional).
+  // Invalid hex rejects the promise with code INVALID_THEME_COLOR.
+  await Parakey.setTheme({
+    actionLight: '#0055FF',
+    actionDark: '#4499FF',
+    titleLight: '#111111',
+    titleDark: '#FFFFFF',
+  });
+}
 ```
 
 ## Error handling

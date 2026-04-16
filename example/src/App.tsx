@@ -1,4 +1,4 @@
-import { configure, showScan } from 'parakey-sdk-react-native';
+import { configure, showScan, setTheme } from 'parakey-sdk-react-native';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 export default function App() {
@@ -15,6 +15,7 @@ async function pressedButton() {
   console.log('Presenting SDK!');
 
   try {
+    await setTheme({ actionLight: '#f2c0bd', titleLight: '#e9f6ce' });
     await configure(tokenBundle);
     await showScan();
   } catch (error) {

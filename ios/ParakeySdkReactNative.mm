@@ -12,6 +12,10 @@ RCT_EXTERN_METHOD(deconfigure:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(showScan:(RCTPromiseResolveBlock)resolve
                   withRejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(setTheme:(NSDictionary *)hexColors
+                  withResolver:(RCTPromiseResolveBlock)resolve
+                  withRejecter:(RCTPromiseRejectBlock)reject)
+
 + (BOOL)requiresMainQueueSetup
 {
   return YES;
