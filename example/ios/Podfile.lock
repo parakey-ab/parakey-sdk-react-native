@@ -9,7 +9,7 @@ PODS:
     - hermes-engine/Pre-built (= 0.80.3)
   - hermes-engine/Pre-built (0.80.3)
   - ParakeySDK (1.7.1)
-  - ParakeySdkReactNative (2.2.0):
+  - ParakeySdkReactNative (2.2.1):
     - boost
     - DoubleConversion
     - fast_float
@@ -2404,7 +2404,7 @@ SPEC CHECKSUMS:
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: fff23161928673afcd95f63146e651726f68b384
   ParakeySDK: 73b0a203e56ed8a8a0e5ec29e021837d04c67026
-  ParakeySdkReactNative: 79037c23f28e1a4d9e2bcf049b47853d24c054ef
+  ParakeySdkReactNative: c6aab6210fdbdd68b9b5ddbef69300491149b350
   RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
   RCTDeprecation: 2ebc9cc0329ede460c5d52956ce5e1ab715c2c2c
   RCTRequired: b83daef658afafdc68d85b97ed082f4497a8ffa4

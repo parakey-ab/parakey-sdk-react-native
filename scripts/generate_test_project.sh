@@ -14,7 +14,7 @@ echo_green "npx @react-native-community/cli@latest init ParakeyReactSample --ver
 prompt_enter_to_continue
 
 echo "Add React Native adapter to package.json 'dependencies', set version accordingly"
-echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#2.2.0",'
+echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#2.2.1",'
 prompt_enter_to_continue
 
 echo "Add to ios/Podfile, update version accordingly"
