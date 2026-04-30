@@ -1,5 +1,5 @@
 #!/bin/bash
-# Updates RN adapater version and native SDK versions in preparation for github release
+# Updates RN adapter version and native SDK versions in preparation for github release
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utils.sh"
@@ -36,6 +36,10 @@ replace_version 'scripts/generate_test_project.sh' 'parakey-sdk-ios' $ios_versio
 replace_version 'scripts/generate_test_project.sh' 'co.parakey:sdk' $android_version
 
 echo_green "All files updated"
+
+echo_green "Building TS types"
+yarn build
+echo_green "TS types built"
 
 echo -e ""
 echo_yellow "Make sure to run 'pod install' in 'example/ios' to update all lock files"
