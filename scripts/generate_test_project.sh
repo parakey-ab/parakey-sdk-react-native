@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/utils.sh"
 
 echo "Setup a new react-native project, ommit '--version' for latest"
-echo_green "npx @react-native-community/cli@latest init ParakeyReactSample --version X.X.X"
+echo_green "npx @react-native-community/cli@latest init ParakeyReactSample --version 0.80.3"
 prompt_enter_to_continue
 
 echo "Add React Native adapter to package.json 'dependencies', set version accordingly"
@@ -52,6 +52,14 @@ prompt_enter_to_continue
 
 echo "Add to root build.gradle"
 text="$(cat <<'EOF'
+buildscript {
+    ext {
+        minSdkVersion = 26
+        compileSdkVersion = 36
+        targetSdkVersion = 36
+    }
+}
+
 allprojects {
   repositories {
     google()
@@ -75,6 +83,14 @@ echo_green "implementation("co.parakey:sdk:1.22.8")"
 prompt_enter_to_continue
 
 echo "Add to MainApplication onCreate with corresponding import"
-echo_green import co.parakey.sdk.Parakey
+echo_green "import co.parakey.sdk.Parakey"
 echo_green "Parakey.initialize(this)"
+prompt_enter_to_continue
+
+echo_green "Copy over the content of App.tsx"
+prompt_enter_to_continue
+
+echo "Run install commands"
+echo_green "npm install"
+echo_green "cd ios && pod install"
 prompt_enter_to_continue
