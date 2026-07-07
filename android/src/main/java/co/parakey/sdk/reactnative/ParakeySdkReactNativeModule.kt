@@ -1,6 +1,6 @@
 package co.parakey.sdk.reactnative
 
-import android.app.Application
+import androidx.activity.ComponentActivity
 import co.parakey.sdk.Parakey
 import co.parakey.sdk.ParakeyError
 import com.facebook.react.bridge.Promise
@@ -12,14 +12,10 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import androidx.core.graphics.toColorInt
 
-
-
 class ParakeySdkReactNativeModule(
     private val context: ReactApplicationContext
 ) : ReactContextBaseJavaModule(context) {
     private val scope = MainScope()
-    private val app: Application
-        get() = context.applicationContext as Application
 
     override fun getName() = "ParakeyBridge"
 
@@ -40,8 +36,19 @@ class ParakeySdkReactNativeModule(
 
     @ReactMethod
     fun showScan(promise: Promise) {
+        val activity = activity(promise) ?: return
+
         scope.launch {
-            complete(promise, Parakey.showScan())
+            complete(promise, Parakey.showScan(activity))
+        }
+    }
+
+    @ReactMethod
+    fun unlock(deviceID: String, promise: Promise) {
+        val activity = activity(promise) ?: return
+
+        scope.launch {
+            complete(promise, Parakey.unlock(activity, deviceID))
         }
     }
 
@@ -59,7 +66,7 @@ class ParakeySdkReactNativeModule(
 
             promise.resolve(null)
         } catch (e: Exception) {
-            promise.reject("INVALID_THEME_COLOR", e.message)
+            promise.reject("invalidThemeColor", e.message)
         }
     }
 
@@ -70,9 +77,18 @@ class ParakeySdkReactNativeModule(
         return "#$normalized".toColorInt()
     }
 
+    private fun activity(promise: Promise): ComponentActivity? {
+        val activity = context.currentActivity as? ComponentActivity
+        if (activity == null) {
+            promise.reject("noAndroidActivity", "No activity available to present UI")
+        }
+
+        return activity
+    }
+
     private fun complete(promise: Promise, result: ParakeyError?) {
         if (result != null) {
-            promise.reject(code = result.toString(), message = null)
+            promise.reject(code = result.id, message = null)
         } else {
             promise.resolve(null)
         }

@@ -45,7 +45,7 @@ class ParakeyBridge: NSObject {
             )
             resolve(nil)
         } catch {
-            reject("INVALID_THEME_COLOR", nil, nil)
+            reject("invalidThemeColor", nil, nil)
         }
 
         func color(light: String, dark: String) throws -> UIColor? {
@@ -59,11 +59,28 @@ class ParakeyBridge: NSObject {
         }
     }
 
+    @objc(unlock:withResolver:withRejecter:)
+    func unlock(
+        deviceID: String,
+        resolve: @escaping RCTPromiseResolveBlock,
+        reject: @escaping RCTPromiseRejectBlock
+    ) {
+        Parakey.shared.unlock(
+            deviceID: deviceID,
+            completion: callback(resolve: resolve, reject: reject)
+        )
+    }
+
     private func callback(
         resolve: @escaping RCTPromiseResolveBlock,
         reject: @escaping RCTPromiseRejectBlock
-    ) -> (ParakeyError?) -> Void {
+    ) -> (Error?) -> Void {
         { error in
+            if let error = error as? any ParakeyError {
+                reject(error.id, nil, error)
+                return
+            }
+
             if let error {
                 reject(String(describing: error), nil, error)
                 return
@@ -74,10 +91,10 @@ class ParakeyBridge: NSObject {
     }
 }
 
-
-private extension UIColor {
-    convenience init?(hex: String) {
-        let hex = hex
+extension UIColor {
+    fileprivate convenience init?(hex: String) {
+        let hex =
+            hex
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .trimmingCharacters(in: ["#"])
 
@@ -87,9 +104,9 @@ private extension UIColor {
 
         let hasAlpha = hex.count == 8
         self.init(
-            red:   component(value, shift: hasAlpha ? 24 : 16),
+            red: component(value, shift: hasAlpha ? 24 : 16),
             green: component(value, shift: hasAlpha ? 16 : 8),
-            blue:  component(value, shift: hasAlpha ? 8 : 0),
+            blue: component(value, shift: hasAlpha ? 8 : 0),
             alpha: hasAlpha ? component(value, shift: 0) : 1
         )
 
@@ -103,4 +120,3 @@ private func dynamicColor(light: UIColor?, dark: UIColor?) -> UIColor? {
     guard let light, let dark else { return light ?? dark }
     return UIColor { $0.userInterfaceStyle == .dark ? dark : light }
 }
-

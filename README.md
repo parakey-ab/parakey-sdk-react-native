@@ -105,33 +105,49 @@ class MainApplication : Application(), ReactApplication {
 ## Usage
 
 ```js
-import Parakey from 'parakey-sdk-react-native';
+import Parakey, { isParakeyError } from 'parakey-sdk-react-native';
 
-function setup() {
+async function setup() {
   const tokenBundle = "...."; // acquired through partner API
 
   try {
     await Parakey.configure(tokenBundle);
   } catch(error) {
-    console.log(error.code);
+    handleError(error);
   }
 }
 
-function show() {
+async function show() {
   try {
     await Parakey.showScan();
   } catch(error) {
-    console.log(error.code);
+    handleError(error);
   }
 }
 
-function cleanUp() {
+async function unlock() {
+  try {
+    await Parakey.unlock("device-id");
+  } catch(error) {
+    handleError(error);
+  }
+}
+
+function handleError(error) {
+  if (isParakeyError(error)) {
+    console.log("Parakey error", error.code);
+  } else {
+    console.log("Unknown error", error);
+  }
+}
+
+async function cleanUp() {
   await Parakey.deconfigure();
 }
 
-function theme() {
+async function theme() {
   // Colors are hex strings: RRGGBB or RRGGBBAA (# prefix optional).
-  // Invalid hex rejects the promise with code INVALID_THEME_COLOR.
+  // Invalid hex rejects the promise with code invalidThemeColor.
   await Parakey.setTheme({
     actionLight: '#0055FF',
     actionDark: '#4499FF',
@@ -143,8 +159,20 @@ function theme() {
 
 ## Error handling
 
-Errors returned by the SDK can be identified using the `code` property on the error object.
-The `code` is a string corresponding to a `ParakeyError` which you can find in the native [documentation](#documentation).
+Rejected promises carry a `ParakeyError` with a `code` (see the `ParakeyErrorCode` type for all codes, and the native [documentation](#documentation) for their meaning).
+Use the `isParakeyError` type guard to narrow a caught error:
+
+```ts
+import { isParakeyError } from 'parakey-sdk-react-native';
+
+try {
+  await Parakey.unlock('device-id');
+} catch (error) {
+  if (isParakeyError(error)) {
+    console.log(error.code); // e.g. "unlockFailure"
+  }
+}
+```
 
 ## Attribution
 
