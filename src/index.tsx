@@ -29,6 +29,7 @@ const PARAKEY_ERROR_CODES = [
   'sessionMissing',
   'invalidThemeColor',
   'noAndroidActivity',
+  'operationInProgress',
 ] as const;
 
 export type ParakeyErrorCode = (typeof PARAKEY_ERROR_CODES)[number];
