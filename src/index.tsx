@@ -10,12 +10,44 @@ interface ParakeyInterface {
   configure(tokenBundle: string): Promise<void>;
   deconfigure(): Promise<void>;
   showScan(): Promise<void>;
+  unlock(deviceID: string): Promise<void>;
   setTheme(hexColors: {
     actionLight?: string;
     actionDark?: string;
     titleLight?: string;
     titleDark?: string;
   }): Promise<void>;
+}
+
+const PARAKEY_ERROR_CODES = [
+  // Native SDK errors
+  'unlockFailure',
+  'unlockCanceled',
+  'accessNotFound',
+  'invalidCredentials',
+  'invalidTokenBundle',
+  'configureFailure',
+  'sessionMissing',
+  'operationInProgress',
+  // Bridge specific errors
+  'invalidThemeColor',
+  'noAndroidActivity',
+] as const;
+
+export type ParakeyErrorCode = (typeof PARAKEY_ERROR_CODES)[number];
+
+export interface ParakeyError {
+  code: ParakeyErrorCode;
+}
+
+export function isParakeyError(error: unknown): error is ParakeyError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    typeof (error as any).code === 'string' &&
+    PARAKEY_ERROR_CODES.includes((error as any).code)
+  );
 }
 
 const Parakey: ParakeyInterface = NativeModules.ParakeyBridge
@@ -30,4 +62,4 @@ const Parakey: ParakeyInterface = NativeModules.ParakeyBridge
     );
 
 export default Parakey;
-export const { configure, deconfigure, showScan, setTheme } = Parakey;
+export const { configure, deconfigure, showScan, setTheme, unlock } = Parakey;

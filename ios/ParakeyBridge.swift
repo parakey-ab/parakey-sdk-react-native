@@ -45,7 +45,7 @@ class ParakeyBridge: NSObject {
             )
             resolve(nil)
         } catch {
-            reject("INVALID_THEME_COLOR", nil, nil)
+            reject("invalidThemeColor", nil, nil)
         }
 
         func color(light: String, dark: String) throws -> UIColor? {
@@ -59,11 +59,28 @@ class ParakeyBridge: NSObject {
         }
     }
 
+    @objc(unlock:withResolver:withRejecter:)
+    func unlock(
+        deviceID: String,
+        resolve: @escaping RCTPromiseResolveBlock,
+        reject: @escaping RCTPromiseRejectBlock
+    ) {
+        Parakey.shared.unlock(
+            deviceID: deviceID,
+            completion: callback(resolve: resolve, reject: reject)
+        )
+    }
+
     private func callback(
         resolve: @escaping RCTPromiseResolveBlock,
         reject: @escaping RCTPromiseRejectBlock
-    ) -> (ParakeyError?) -> Void {
+    ) -> (Error?) -> Void {
         { error in
+            if let error = error as? any ParakeyError {
+                reject(error.id, nil, error)
+                return
+            }
+
             if let error {
                 reject(String(describing: error), nil, error)
                 return

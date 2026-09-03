@@ -1,48 +1,58 @@
-import { configure, showScan, setTheme } from 'parakey-sdk-react-native';
+import {
+  setTheme,
+  configure,
+  showScan,
+  isParakeyError,
+  unlock,
+} from 'parakey-sdk-react-native';
 import { Text, View, StyleSheet, Button } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hello Parakey SDK</Text>
-      <Button title="Open SDK" onPress={pressedButton} />
+      <Button title="Configure" onPress={pressedConfigure} />
+      <Button title="Show scan" onPress={pressedShowScan} />
+      <Button title="Unlock" onPress={pressedUnlock} />
     </View>
   );
 }
 
-async function pressedButton() {
+async function pressedConfigure() {
   const tokenBundle = 'example token';
-  console.log('Presenting SDK!');
 
   try {
     await setTheme({ actionLight: '#f2c0bd', titleLight: '#e9f6ce' });
     await configure(tokenBundle);
-    await showScan();
   } catch (error) {
-    if (isNativeModuleError(error)) {
-      console.log(error.code);
+    if (isParakeyError(error)) {
+      console.log('Configure error', error);
     } else {
       console.log('Unknown error', error);
     }
   }
 }
 
-interface NativeModuleError {
-  code: string;
+async function pressedShowScan() {
+  try {
+    await showScan();
+  } catch (error) {
+    console.log('Show scan error', error);
+  }
 }
 
-function isNativeModuleError(error: unknown): error is NativeModuleError {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'code' in error &&
-    typeof (error as any).code === 'string'
-  );
+async function pressedUnlock() {
+  try {
+    await unlock('device-id');
+  } catch (error) {
+    console.log('Unlock error', error);
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    gap: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
