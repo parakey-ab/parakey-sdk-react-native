@@ -14,7 +14,7 @@ npm install https://github.com/parakey-ab/parakey-sdk-react-native#3.0.0
 
 ## Documentation
 
-Documentation can be found in the Parther API specification and repositories for respective native package
+Documentation can be found in the Partner API specification and repositories for respective native package
 
 - [Partner API](https://assets.parakey.co/api/partner/index.html)
 - [Android](https://github.com/parakey-ab/parakey-sdk-android)
