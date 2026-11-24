@@ -14,12 +14,12 @@ echo_green "npx @react-native-community/cli@latest init ParakeyReactSample --ver
 prompt_enter_to_continue
 
 echo "Add React Native adapter to package.json 'dependencies', set version accordingly"
-echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#3.0.0",'
+echo_green '"parakey-sdk-react-native": "github:parakey-ab/parakey-sdk-react-native#3.1.0",'
 prompt_enter_to_continue
 
 echo "Add to ios/Podfile, update version accordingly"
 echo_grey "config = use_native_modules!"
-echo_green "pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '2.7.1'"
+echo_green "pod 'ParakeySDK', :git => 'git@github.com:parakey-ab/parakey-sdk-ios.git', :tag => '2.22.2'"
 echo_grey "use_react_native!("
 prompt_enter_to_continue
 
@@ -55,7 +55,7 @@ text="$(cat <<'EOF'
 buildscript {
     ext {
         minSdkVersion = 26
-        compileSdkVersion = 36
+        compileSdkVersion = 37
         targetSdkVersion = 36
     }
 }
@@ -79,7 +79,7 @@ echo_green "$text"
 prompt_enter_to_continue
 
 echo "Add to dependencies in app/build.gradle"
-echo_green "implementation("co.parakey:sdk:2.5.1")"
+echo_green "implementation("co.parakey:sdk:2.13.8")"
 prompt_enter_to_continue
 
 echo "Add to MainApplication onCreate with corresponding import"
