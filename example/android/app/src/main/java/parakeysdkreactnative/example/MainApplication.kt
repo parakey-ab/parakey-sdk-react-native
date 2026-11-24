@@ -22,7 +22,6 @@ class MainApplication : Application(), ReactApplication {
 
     override fun onCreate() {
         super.onCreate()
-        Parakey.initialize(this)
         loadReactNative(this)
     }
 }

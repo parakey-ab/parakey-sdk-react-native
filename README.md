@@ -88,20 +88,6 @@ dependencies {
 }
 ```
 
-- Parakey must be initialized early in the application lifecycle via a call to `Parakey.initialize(this)` in the `onCreate` callback of the `Application`
-
-```diff
-+ import co.parakey.sdk.Parakey
-
-class MainApplication : Application(), ReactApplication {
-    override fun onCreate() {
-        super.onCreate()
-+       Parakey.initialize(this)
-        loadReactNative(this)
-    }
-}
-```
-
 ## Usage
 
 ```js

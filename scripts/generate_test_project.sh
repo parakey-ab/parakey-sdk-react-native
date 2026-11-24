@@ -82,11 +82,6 @@ echo "Add to dependencies in app/build.gradle"
 echo_green "implementation("co.parakey:sdk:2.13.8")"
 prompt_enter_to_continue
 
-echo "Add to MainApplication onCreate with corresponding import"
-echo_green "import co.parakey.sdk.Parakey"
-echo_green "Parakey.initialize(this)"
-prompt_enter_to_continue
-
 echo_green "Copy over the content of App.tsx"
 prompt_enter_to_continue
 
